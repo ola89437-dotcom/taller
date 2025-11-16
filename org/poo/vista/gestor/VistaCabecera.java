@@ -8,9 +8,8 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import org.poo.controlador.autor.AutorVistasControlador;
-import org.poo.controlador.editorial.EditorialVistasControlador;
-import org.poo.controlador.libro.LibroVistasControlador;
+import org.poo.controlador.genero.GeneroVistasControlador;
+import org.poo.controlador.pelicula.PeliculaVistaControlador;
 import org.poo.recurso.constante.Configuracion;
 
 public class VistaCabecera extends HBox {
@@ -42,83 +41,123 @@ public class VistaCabecera extends HBox {
     }
 
     private void crearMenus() {
-        menuLibro();
-        menuEditorial();
-        menuAutor();
+        menuGenero();
+        menuPelicula();
+        menuSalas();
+        menuBoletas();
     }
 
-    private void menuLibro() {
-        MenuItem opcion1 = new MenuItem("Crear Libro");
-        MenuItem opcion2 = new MenuItem("Listar Libros");
-        MenuItem opcion3 = new MenuItem("Administrar Libros");
+    private void menuGenero() {
+        MenuItem opcion1 = new MenuItem("Crear Género");
+        MenuItem opcion2 = new MenuItem("Listar Géneros");
+        MenuItem opcion3 = new MenuItem("Administrar Géneros");
+        MenuItem opcion4 = new MenuItem("Carrusel");
 
         opcion1.setOnAction((e) -> {
-            miPanelPrincipal.setCenter(LibroVistasControlador.crearLibro(
+            miPanelPrincipal.setCenter(GeneroVistasControlador.crearGen(
                     miEscenario, Configuracion.ANCHO_APP, Configuracion.ALTO_APP));
         });
 
         opcion2.setOnAction((e) -> {
-            miPanelPrincipal.setCenter(LibroVistasControlador.listarLibro(
+            miPanelPrincipal.setCenter(GeneroVistasControlador.listarGen(
                     miEscenario, Configuracion.ANCHO_APP, Configuracion.ALTO_APP));
         });
 
         opcion3.setOnAction((e) -> {
-            miPanelPrincipal.setCenter(LibroVistasControlador.administrarLibro(
+            miPanelPrincipal.setCenter(GeneroVistasControlador.administrarGen(
                     miEscenario, Configuracion.ANCHO_APP, Configuracion.ALTO_APP));
         });
 
-        MenuButton miBoton = new MenuButton("Libros");
-        miBoton.getItems().addAll(opcion1, opcion2, opcion3);
+        opcion4.setOnAction((e) -> {
+            System.out.println("Abrir formulario carrusel Género");
+        });
+
+        MenuButton miBoton = new MenuButton("Géneros");
+        miBoton.getItems().addAll(opcion1, opcion2, opcion3, opcion4);
         agregarBotonMenu(miBoton);
     }
 
-    private void menuEditorial() {
-        MenuItem opcion1 = new MenuItem("Crear Editorial");
-        MenuItem opcion2 = new MenuItem("Listar Editoriales");
-        MenuItem opcion3 = new MenuItem("Administrar Editoriales");
+    private void menuPelicula() {
+        MenuItem opcion1 = new MenuItem("Crear Película");
+        MenuItem opcion2 = new MenuItem("Listar Películas");
+        MenuItem opcion3 = new MenuItem("Administrar Películas");
+        MenuItem opcion4 = new MenuItem("Carrusel");
 
         opcion1.setOnAction((e) -> {
-            miPanelPrincipal.setCenter(EditorialVistasControlador.crearEditorial(
+            miPanelPrincipal.setCenter(PeliculaVistaControlador.crearPeli(
                     miEscenario, Configuracion.ANCHO_APP, Configuracion.ALTO_APP));
         });
 
         opcion2.setOnAction((e) -> {
-            miPanelPrincipal.setCenter(EditorialVistasControlador.listarEditorial(
+            miPanelPrincipal.setCenter(PeliculaVistaControlador.listarPeli(
                     miEscenario, Configuracion.ANCHO_APP, Configuracion.ALTO_APP));
         });
 
         opcion3.setOnAction((e) -> {
-            miPanelPrincipal.setCenter(EditorialVistasControlador.administrarEditorial(
+            miPanelPrincipal.setCenter(PeliculaVistaControlador.administrarPeli(
                     miEscenario, Configuracion.ANCHO_APP, Configuracion.ALTO_APP));
         });
 
-        MenuButton miBoton = new MenuButton("Editoriales");
-        miBoton.getItems().addAll(opcion1, opcion2, opcion3);
+        opcion4.setOnAction((e) -> {
+            System.out.println("Abrir formulario carrusel Película");
+        });
+
+        MenuButton miBoton = new MenuButton("Películas");
+        miBoton.getItems().addAll(opcion1, opcion2, opcion3, opcion4);
         agregarBotonMenu(miBoton);
     }
 
-    private void menuAutor() {
-        MenuItem opcion1 = new MenuItem("Crear Autor");
-        MenuItem opcion2 = new MenuItem("Listar Autores");
-        MenuItem opcion3 = new MenuItem("Administrar Autores");
+    private void menuSalas() {
+        MenuItem opcion1 = new MenuItem("Crear Sala");
+        MenuItem opcion2 = new MenuItem("Listar Salas");
+        MenuItem opcion3 = new MenuItem("Administrar Salas");
+        MenuItem opcion4 = new MenuItem("Carrusel");
 
         opcion1.setOnAction((e) -> {
-            miPanelPrincipal.setCenter(AutorVistasControlador.crearAutor(
-                    miEscenario, Configuracion.ANCHO_APP, Configuracion.ALTO_APP));
+            System.out.println("Abrir formulario crear Sala");
         });
 
         opcion2.setOnAction((e) -> {
-            miPanelPrincipal.setCenter(AutorVistasControlador.listarAutor(
-                    miEscenario, Configuracion.ANCHO_APP, Configuracion.ALTO_APP));
+            System.out.println("Abrir formulario listar Sala");
         });
 
         opcion3.setOnAction((e) -> {
-            miPanelPrincipal.setCenter(AutorVistasControlador.administrarAutor(
-                    miEscenario, Configuracion.ANCHO_APP, Configuracion.ALTO_APP));
+            System.out.println("Abrir administrar Sala");
         });
 
-        MenuButton miBoton = new MenuButton("Autores");
-        miBoton.getItems().addAll(opcion1, opcion2, opcion3);
+        opcion4.setOnAction((e) -> {
+            System.out.println("Abrir formulario carrusel Sala");
+        });
+
+        MenuButton miBoton = new MenuButton("Salas");
+        miBoton.getItems().addAll(opcion1, opcion2, opcion3, opcion4);
+        agregarBotonMenu(miBoton);
+    }
+
+    private void menuBoletas() {
+        MenuItem opcion1 = new MenuItem("Crear Boleta");
+        MenuItem opcion2 = new MenuItem("Listar Boletas");
+        MenuItem opcion3 = new MenuItem("Administrar Boletas");
+        MenuItem opcion4 = new MenuItem("Carrusel");
+
+        opcion1.setOnAction((e) -> {
+            System.out.println("Abrir formulario crear Boleta");
+        });
+
+        opcion2.setOnAction((e) -> {
+            System.out.println("Abrir formulario listar Boleta");
+        });
+
+        opcion3.setOnAction((e) -> {
+            System.out.println("Abrir administrar Boleta");
+        });
+
+        opcion4.setOnAction((e) -> {
+            System.out.println("Abrir formulario carrusel Boleta");
+        });
+
+        MenuButton miBoton = new MenuButton("Boletas");
+        miBoton.getItems().addAll(opcion1, opcion2, opcion3, opcion4);
         agregarBotonMenu(miBoton);
     }
 }

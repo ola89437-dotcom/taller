@@ -1,5 +1,7 @@
 package org.poo.recurso.utilidad;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.poo.recurso.constante.Persistencia;
@@ -7,11 +9,11 @@ import org.poo.recurso.constante.Persistencia;
 public class Icono {
 
     public static ImageView obtenerIcono(
-            String nombreIcono, int alto
+        String nombreIcono, int alto
     ) {
-        String rutaIcono
-                = Persistencia.NOMBRE_CARPETA_IMAGENES_INTERNAS + nombreIcono;
+        String rutaIcono = Persistencia.NOMBRE_CARPETA_IMAGENES_INTERNAS + nombreIcono;
         Image iconito = new Image(rutaIcono);
+//        System.out.println("---->" + rutaIcono);
         ImageView vistaIconito = new ImageView(iconito);
 
         if (alto > 0) {
@@ -22,4 +24,29 @@ public class Icono {
         return vistaIconito;
     }
 
+    public static ImageView previsualizar(String rutaImagen, int dimensionMaxima) {
+        ImageView imgMostrar = null;
+
+        try (FileInputStream archivo = new FileInputStream(rutaImagen)) {
+            Image imgBasica = new Image(archivo);
+            imgMostrar = new ImageView(imgBasica);
+
+            double ancho = imgBasica.getWidth();
+            double alto = imgBasica.getHeight();
+
+            if (ancho > alto) {
+                imgMostrar.setFitWidth(dimensionMaxima);
+            } else {
+                imgMostrar.setFitHeight(dimensionMaxima);
+            }
+
+            imgMostrar.setPreserveRatio(true);
+            imgMostrar.setSmooth(true);
+
+        } catch (IOException miError) {
+            System.out.println("Error al cargar la foto externa: " + miError.getMessage());
+        }
+
+        return imgMostrar;
+    }
 }

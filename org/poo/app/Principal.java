@@ -15,7 +15,7 @@ public class Principal extends Application{
     @Override
     public void start(Stage stage) throws Exception {
         vistaAdmin = new VistaAdmin(stage);
-        stage.setTitle("Leame De Una");
+        stage.setTitle("Cine");
         
         vistaAdmin.habilitarXcerrar(()->{SalidaControlador.verificar(stage);});
         
